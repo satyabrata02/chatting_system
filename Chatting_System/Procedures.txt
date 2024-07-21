@@ -1,0 +1,71 @@
+D:\Django_Projects>django-admin startproject Chatting_System
+
+D:\Django_Projects>cd Chatting_System
+
+D:\Django_Projects\Chatting_System>py manage.py startapp ChatApp
+
+---> Create folders 'templates' and 'static' inside project folder i.e.(Chatting_System)
+
+settings.py(in Chatting_System):
+-----------------------------------
+BASE_DIR = Path(__file__).resolve().parent.parent
+TEMPLATE_DIR = BASE_DIR/'templates'
+STATIC_DIR = BASE_DIR/'static'
+
+# Save Image in this directory
+MEDIA_ROOT = os.path.join(STATIC_DIR, 'profile_picture')
+                -------------------------------------------------------
+INSTALLED_APPS = [
+    ...................,
+    ...................,
+    'ChatApp',
+]
+                ---------------------------------------------------------
+TEMPLATES = [
+    {
+        'DIRS': [TEMPLATE_DIR],
+    },
+]
+                ---------------------------------------------------------
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'Chatting_System',
+        'USER': 'root',
+        'PASSWORD': 'root',
+        'HOST': 'localhost',
+        'PORT': 3306,
+    }
+}
+                -----------------------------------------------------------
+STATIC_URL = 'static/'
+STATICFILES_DIRS = [STATIC_DIR]
+
+models.py:
+---------------
+---> Create required tables.
+
+admin.py:
+-----------
+---> Register models in admin panel.
+
+---> Create DATABASES 'chatting_system'
+
+D:\Django_Projects\Chatting_System>py manage.py makemigrations
+D:\Django_Projects\Chatting_System>py manage.py migrate
+D:\Django_Projects\Chatting_System>py manage.py createsuperuser
+D:\Django_Projects\Chatting_System>py manage.py runserver
+
+---> Create css, js, image, profile_picture folders inside 'static' folder.
+
+---> Create html files inside 'templates' folder.
+
+views.py:
+-----------
+---> Write codes(method)
+
+Required Packages:
+-------------------
+Django ---> 5.0.6
+PyMySQL ---> 1.1.1
+requests ---> 2.32.3
