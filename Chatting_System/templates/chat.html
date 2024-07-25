@@ -89,7 +89,10 @@
                 </div>
                 <form method="post" class="typing-area">
                     {% csrf_token %}
-                    <input type="text" placeholder="Type a message here..." name="sendmessage" required>
+                    <!-- <input type="text" placeholder="Type a message here..." name="sendmessage" required> -->
+                    <div class="sendmessage">
+                        <textarea name="sendmessage" id="messageInput" placeholder="Type a message here..." required></textarea>
+                    </div>
 
                     <input type="hidden" value="{{current_user.phoneno}}" name="fromuser">
                     <input type="hidden" value="{{chat_user.phoneno}}" name="touser">
@@ -175,6 +178,24 @@
         const options = document.querySelector(".more-options");
         options.addEventListener("click", () => {
             options.classList.toggle("active");
+        });
+
+        // writting message box size customize
+        document.addEventListener("DOMContentLoaded", function() {
+            const textarea = document.getElementById("messageInput");
+            const sendmessage = document.getElementById("sendmessage");
+
+            textarea.addEventListener("input", function() {
+                // Check if the text has line breaks or if it overflows
+                if (this.value.includes('\n') || this.scrollHeight > this.clientHeight) {
+                    this.style.height = "auto";
+                    this.style.height = Math.min(this.scrollHeight, 110) + "px";
+                } else if (this.value.trim() === "") {
+                    this.style.height = "47px";
+                } else {
+                    this.style.height = "47px";
+                }
+            });
         });
     </script>
     <script src="{% static 'js/header.js' %}"></script>
