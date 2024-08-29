@@ -11,18 +11,21 @@ from django.core.files.storage import FileSystemStorage
 from django.conf import settings
 
 # Create your views here.
+def clear_messages(request):
+    # Clear any previous messages
+    storage = messages.get_messages(request)
+    for _ in storage:
+        pass
+
 def homepage(request):
+    clear_messages(request)
     return render(request,'index.html')
 
 def aboutpage(request):
     return render(request,'about.html')
 
-
 def register(request):
-    # Clear any previous messages
-    storage = messages.get_messages(request)
-    for _ in storage:
-        pass
+    clear_messages(request)
 
     if request.method == 'POST':
         firstname = request.POST['firstname']
@@ -83,10 +86,7 @@ def register(request):
     return render(request,'register.html')
 
 def login(request):
-    # Clear any previous messages
-    storage = messages.get_messages(request)
-    for _ in storage:
-        pass
+    clear_messages(request)
 
     if request.method == 'POST':
         uphoneno = request.POST.get('phoneno')
@@ -107,10 +107,7 @@ def login(request):
     return render(request, 'login.html')
 
 def logout(request):
-    # Clear any previous messages
-    storage = messages.get_messages(request)
-    for _ in storage:
-        pass
+    clear_messages(request)
     
     uphoneno = request.session.get('uphoneno')
     if uphoneno:
@@ -125,10 +122,7 @@ def logout(request):
     return redirect('/login')
 
 def contactus(request):
-    # Clear any previous messages
-    storage = messages.get_messages(request)
-    for _ in storage:
-        pass
+    clear_messages(request)
 
     if request.method == 'POST':
         firstname = request.POST['firstname']
@@ -144,10 +138,7 @@ def contactus(request):
     return render(request, 'contactus.html')
 
 def pw_recovery(request):
-    # Clear any previous messages
-    storage = messages.get_messages(request)
-    for _ in storage:
-        pass
+    clear_messages(request)
     
     user_pw = None
     if request.method == 'POST':
@@ -179,10 +170,7 @@ def pw_recovery(request):
     return render(request, 'recovery.html',{'user_pw':user_pw})
 
 def user_lists(request):
-    # Clear any previous messages
-    storage = messages.get_messages(request)
-    for _ in storage:
-        pass
+    clear_messages(request)
     
     # Get the current user's phone number from the session
     uphoneno = request.session.get('uphoneno')
@@ -298,10 +286,7 @@ def chat(request):
     return render(request, 'chat.html', {'chat_user': chat_user, 'current_user': current_user, 'chat_messages': chat_messages, 'uphoneno':uphoneno})
 
 def history(request):
-    # Clear any previous messages
-    storage = messages.get_messages(request)
-    for _ in storage:
-        pass
+    clear_messages(request)
     
     uphoneno = request.session.get('uphoneno')
     current_user_table = f"ocs{uphoneno}"
@@ -339,10 +324,7 @@ def history(request):
     return render(request, 'history.html', {'chat_messages':chat_messages})
 
 def update_password(request):
-    # Clear any previous messages
-    storage = messages.get_messages(request)
-    for _ in storage:
-        pass
+    clear_messages(request)
     
     uphoneno = request.session.get('uphoneno')
     # Check if the user is logged in
@@ -363,10 +345,7 @@ def update_password(request):
     return render(request, 'updatepw.html', {'uphoneno':uphoneno})
 
 def change_pic(request):
-    # Clear any previous messages
-    storage = messages.get_messages(request)
-    for _ in storage:
-        pass
+    clear_messages(request)
     
     # Get the current user's phone number from the session
     uphoneno = request.session.get('uphoneno')
