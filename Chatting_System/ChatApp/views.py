@@ -362,23 +362,13 @@ def change_pic(request):
 
         if request.method == 'POST' and 'name' in request.FILES:
             image = request.FILES['name']
-            fs = FileSystemStorage()
-            # Define the path where files are stored
-            media_root = settings.MEDIA_ROOT
-            file_path = os.path.join(media_root, image.name)
-            
-            # Check if a file with the same name already exists
-            if os.path.exists(file_path):
-                # Delete the existing file
-                os.remove(file_path)
-            
-            # Save the new file
-            fs.save(image.name, image)
-            current_user.images = image.name
+            root = settings.MEDIA_ROOT
+            fs = FileSystemStorage(location=root)
+            final_file_name = fs.save(image.name, image)
+            current_user.images = final_file_name
             current_user.save()
+
             messages.success(request, 'Picture changed successfully')
-            return redirect('/change-picture')
-        
     except Userreg.DoesNotExist:
         pass
     

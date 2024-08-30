@@ -63,9 +63,3 @@ D:\Django_Projects\Chatting_System>py manage.py runserver
 views.py:
 -----------
 ---> Write codes(method)
-
-Required Packages:
--------------------
-Django ---> 5.0.6
-PyMySQL ---> 1.1.1
-requests ---> 2.32.3

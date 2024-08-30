@@ -1,0 +1,15 @@
+asgiref==3.8.1
+Django==5.1
+mysqlclient==2.2.4
+PyMySQL==1.1.1
+sqlparse==0.5.1
+tzdata==2024.1
+
+
+How to install this modules ?
+---------------------------------
+pip install Django
+
+pip install PyMySQL
+
+pip install mysqlclient
