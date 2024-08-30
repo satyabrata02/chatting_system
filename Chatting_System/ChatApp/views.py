@@ -6,7 +6,6 @@ from django.contrib.auth import logout as django_logout
 from django.db.models import Q
 from django.db import connection
 import datetime
-import os
 from django.core.files.storage import FileSystemStorage
 from django.conf import settings
 
