@@ -45,7 +45,7 @@ form .contents table{
 }
 .contents table tr td{
     font-size: 18px;
-    word-break: break-word;
+    /* word-break: break-word; */
     text-align: center;
     padding: 10px 3px;
 }
